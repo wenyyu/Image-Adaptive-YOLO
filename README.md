@@ -40,7 +40,7 @@ The code is based on [[tensorflow-yolov3]](https://github.com/YunYang1994/tensor
 ```shell
 @inproceedings{liu2022imageadaptive,
   title={Image-Adaptive YOLO for Object Detection in Adverse Weather Conditions},
-  author={Wenyu Liu and Gaofeng Ren and Runsheng Yu and Shi Guo and Jianke Zhu and Lei Zhang},
+  author={Liu, Wenyu and Ren, Gaofeng and Yu, Runsheng and Guo, Shi and Zhu, Jianke and Zhang, Lei},
   booktitle={Proceedings of the AAAI Conference on Artificial Intelligence},
   year={2022}
 }
