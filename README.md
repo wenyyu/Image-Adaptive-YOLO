@@ -1,9 +1,7 @@
 # Image-Adaptive YOLO for Object Detection in Adverse Weather Conditions
 ####  Accepted by AAAI 2022 [[arxiv]](https://arxiv.org/abs/2112.08088) 
-Wenyu Liu<sup>1</sup>, Gaofeng Ren<sup>2</sup>, Runsheng Yu<sup>3</sup>, Shi Guo<sup>3</sup>, [Jianke Zhu](https://scholar.google.com/citations?hl=zh-CN&user=SC-WmzwAAAAJ&view_op=list_works&sortby=pubdate)<sup>1</sup>, [Lei Zhang](https://scholar.google.com.hk/citations?user=tAK5l1IAAAAJ&hl=zh-CN&oi=sra)<sup>2,4</sup>
+Wenyu Liu, Gaofeng Ren, Runsheng Yu, Shi Guo, [Jianke Zhu](https://scholar.google.com/citations?hl=zh-CN&user=SC-WmzwAAAAJ&view_op=list_works&sortby=pubdate), [Lei Zhang](https://scholar.google.com.hk/citations?user=tAK5l1IAAAAJ&hl=zh-CN&oi=sra)
       
-<sup>1</sup>Zhejiang University <sup>2</sup>Alibaba <sup>3</sup>Hong Kong University of Science and Technology <sup>4</sup>HongKong Polytechnic University
-
 ![image](https://user-images.githubusercontent.com/24246792/146731560-fa69fe86-fbf8-4a96-8bd8-a500490ec41d.png)
 
 # Installation
