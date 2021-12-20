@@ -38,12 +38,10 @@ The code is based on [[tensorflow-yolov3]](https://github.com/YunYang1994/tensor
 # Citation
 
 ```shell
-@misc{liu2021imageadaptive,
-      title={Image-Adaptive YOLO for Object Detection in Adverse Weather Conditions}, 
-      author={Wenyu Liu and Gaofeng Ren and Runsheng Yu and Shi Guo and Jianke Zhu and Lei Zhang},
-      year={2021},
-      eprint={2112.08088},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV}
+@inproceedings{liu2022imageadaptive,
+  title={Image-Adaptive YOLO for Object Detection in Adverse Weather Conditions},
+  author={Wenyu Liu and Gaofeng Ren and Runsheng Yu and Shi Guo and Jianke Zhu and Lei Zhang},
+  booktitle={Proceedings of the AAAI Conference on Artificial Intelligence},
+  year={2022}
 }
 ```
