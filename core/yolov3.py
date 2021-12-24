@@ -48,12 +48,6 @@ class YOLOV3(object):
         filter_imgs_series = []
         if isp_flag:
             # start_time = time.time()
-            '''
-            [array([[0.60293674]], dtype=float32), array([[1.0094241, 0.9959481, 1.0026685]], dtype=float32),
-             array([[0.6298922]], dtype=float32), array([[[[[0.52315885, 0.55220616, 0.5692612, 1.8779874, 1.8151548,
-                                                             1.7254574, 0.6697231, 0.5814779]]]]], dtype=float32),
-             array([[0.41655558]], dtype=float32), array([[4.6885705]], dtype=float32)]
-            '''
 
             with tf.variable_scope('extract_parameters_2'):
                 input_data = tf.image.resize_images(input_data, [256, 256], method=tf.image.ResizeMethod.BILINEAR)
@@ -85,10 +79,6 @@ class YOLOV3(object):
         self.filter_imgs_series = filter_imgs_series
         input_data = filtered_image_batch
         route_1, route_2, input_data = backbone.darknet53(input_data, self.trainable)
-        # route_1, route_2, input_data = backbone.darknet53_deep(input_data, self.trainable)
-        # route_1, route_2, input_data = backbone.darknet53_deep2(input_data, self.trainable)
-        # route_1, route_2, input_data = backbone.darknet53_deep3(input_data, self.trainable)
-
 
         input_data = common.convolutional(input_data, (1, 1, 1024,  512), self.trainable, 'conv52')
         input_data = common.convolutional(input_data, (3, 3,  512, 1024), self.trainable, 'conv53')
