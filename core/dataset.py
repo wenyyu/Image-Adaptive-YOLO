@@ -180,10 +180,10 @@ class Dataset(object):
             beta = 0.01 * beta + 0.05
             # load voc_foggy_synthetic image offline (The synthesized code is ./core/data_make.py)
             if self.data_train_flag:
-                img_name = '/data/vdd/liuwenyu/data_vocfog/train/JPEGImages/' + image_name \
+                img_name = args.vocfog_traindata_dir + image_name \
                            + '_' + ("%.2f" % beta) + '.' + image_name_index
             else:
-                img_name = '/data/vdd/liuwenyu/data_vocfog/test/JPEGImages/' + image_name \
+                img_name = args.vocfog_valdata_dir + image_name \
                            + '_' + ("%.2f" % beta) + '.' + image_name_index
 
             foggy_image = cv2.imread(img_name)
