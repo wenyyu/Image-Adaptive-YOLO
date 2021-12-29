@@ -45,21 +45,24 @@ def parse_annotation(annotation):
 
         img_f = image/255
         (row, col, chs) = image.shape
-        A = 0.5  # 亮度
-        # beta = 0.08  # 雾的浓度
+        A = 0.5  
+        # beta = 0.08  
         beta = 0.01 * i + 0.05
-        size = math.sqrt(max(row, col))  # 雾化尺寸
-        center = (row // 2, col // 2)  # 雾化中心
+        size = math.sqrt(max(row, col)) 
+        center = (row // 2, col // 2)  
         foggy_image = AddHaz_loop(img_f, center, size, beta, A)
         img_f = np.clip(foggy_image*255, 0, 255)
         img_f = img_f.astype(np.uint8)
         img_name = '/data/vdd/liuwenyu/data_vocfog/train/JPEGImages/' + image_name \
                    + '_' + ("%.2f"%beta) + '.' + image_name_index
+        #img_name = '/data/vdd/liuwenyu/data_vocfog/val/JPEGImages/' + image_name \
+        #   + '_' + ("%.2f"%beta) + '.' + image_name_index
         cv2.imwrite(img_name, img_f)
 
 
 if __name__ == '__main__':
-    an = load_annotations('/home/liuwenyu.lwy/code/defog_yolov3/data/dataset/voc_norm_test.txt')
+    an = load_annotations('/home/liuwenyu.lwy/code/defog_yolov3/data/dataset/voc_norm_train.txt')
+    #an = load_annotations('/home/liuwenyu.lwy/code/defog_yolov3/data/dataset/voc_norm_test.txt')
     ll = len(an)
     print(ll)
     for j in range(ll):
