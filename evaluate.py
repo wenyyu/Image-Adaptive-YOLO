@@ -39,7 +39,7 @@ class YoloTest(object):
         self.score_threshold  = cfg.TEST.SCORE_THRESHOLD
         self.iou_threshold    = cfg.TEST.IOU_THRESHOLD
         self.moving_ave_decay = cfg.YOLO.MOVING_AVE_DECAY
-        self.annotation_path  = cfg.TEST.ANNOT_PATH
+        self.annotation_path  = args.test_path
         self.weight_file      = cfg.TEST.WEIGHT_FILE
         self.write_image      = cfg.TEST.WRITE_IMAGE
         self.write_image_path = cfg.TEST.WRITE_IMAGE_PATH
