@@ -91,7 +91,7 @@ __C.YOLO                        = edict()
 
 # Set the class name
 __C.YOLO.CLASSES                = args.class_name
-__C.YOLO.ANCHORS                = "./data/anchors/coco_anchors.txt"
+__C.YOLO.ANCHORS                = "./data/anchors/baseline_anchors.txt"
 __C.YOLO.MOVING_AVE_DECAY       = 0.9995
 __C.YOLO.STRIDES                = [8, 16, 32]
 __C.YOLO.ANCHOR_PER_SCALE       = 3
