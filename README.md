@@ -13,7 +13,8 @@ $ pip install -r ./docs/requirements.txt
 ```
 
 # Datasets and Models
-[PSCAL VOC](http://host.robots.ox.ac.uk/pascal/VOC/) [RTTS](https://sites.google.com/view/reside-dehaze-datasets/reside-%CE%B2) [ExDark](https://drive.google.com/file/d/1GZqHFzTLDI-1rcOctHdf-c16VgagWocd/view) [Voc_foggy_test & Voc_dark_test & Models](https://pan.baidu.com/s/1GQE_80rEzs0uCrzauHxwdw) (key: iayl)  
+[PSCAL VOC](http://host.robots.ox.ac.uk/pascal/VOC/) [RTTS](https://sites.google.com/view/reside-dehaze-datasets/reside-%CE%B2) [ExDark](https://drive.google.com/file/d/1GZqHFzTLDI-1rcOctHdf-c16VgagWocd/view)  
+Voc_foggy_test & Voc_dark_test & Models: [Google Drive](https://drive.google.com/drive/folders/1P0leuiGHH69kVxyNVFuiCdCYXyYquPqM), [Baidu Netdisk](https://pan.baidu.com/s/1GQE_80rEzs0uCrzauHxwdw) (key: iayl)  
 # Quick test
 ```bash  
 # put checkpoint model in the corresponding directory 
