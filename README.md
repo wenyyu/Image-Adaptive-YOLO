@@ -45,15 +45,19 @@ VOC           # path:  /home/lwy/work/code/tensorflow-yolov3/data/VOC
                      
 $ python scripts/voc_annotation.py
 ```
-2. Generate Voc_foggy_train dataset offline
-```bashrc
-$ python ./core/data_make.py
+2. Generate Voc_foggy_train and Voc_foggy_val dataset offline
+```bash  
+# generate ten levels' foggy training images and val images, respectively
+$ python ./core/data_make.py 
 ```
+
 3. Edit core/config.py to configure  
 ```bashrc
---train_path         = "./data/dataset_fog/voc_norm_train.txt"
---test_path          = "./data/dataset_fog/voc_norm_test.txt"
---class_name         = "./data/classes/vocfog.names"
+--vocfog_traindata_dir'  = '/data/vdd/liuwenyu/data_vocfog/train/JPEGImages/'
+--vocfog_valdata_dir'    = '/data/vdd/liuwenyu/data_vocfog/val/JPEGImages/'
+--train_path             = './data/dataset_fog/voc_norm_train.txt'
+--test_path              = './data/dataset_fog/voc_norm_test.txt'
+--class_name             = './data/classes/vocfog.names'
 ```
 4. Train and Evaluate
 ```bash  
