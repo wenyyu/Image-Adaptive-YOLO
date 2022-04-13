@@ -63,7 +63,7 @@ $ python ./core/data_make.py
 ```bash  
 $ python train.py # we trained our model from scratch.  
 $ python evaluate.py   
-$ cd mAP & python main.py 
+$ cd ./experiments/.../mAP & python main.py 
 ``` 
 5. More details of Preparing dataset or Train with your own dataset  
    reference the implementation [tensorflow-yolov3](https://github.com/YunYang1994/tensorflow-yolov3).
