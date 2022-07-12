@@ -1,9 +1,11 @@
 # Image-Adaptive YOLO for Object Detection in Adverse Weather Conditions
-####  Accepted by AAAI 2022 [[arxiv]](https://arxiv.org/abs/2112.08088v2) 
+####  Accepted by AAAI 2022 [[arxiv]](https://arxiv.org/abs/2112.08088) 
 Wenyu Liu, Gaofeng Ren, Runsheng Yu, Shi Guo, [Jianke Zhu](https://person.zju.edu.cn/jkzhu/645901.html), [Lei Zhang](https://web.comp.polyu.edu.hk/cslzhang/)
       
 ![image](https://user-images.githubusercontent.com/24246792/146731560-fa69fe86-fbf8-4a96-8bd8-a500490ec41d.png)
-
+# Update
+The image-adaptive filtering techniques used in the segmentation task can be found in our preprint paper.
+#### "Improving Nighttime Driving-Scene Segmentation via Dual Image-adaptive Learnable Filters". [[arxiv]](https://arxiv.org/abs/2207.01331)
 # Installation
 ```bash
 $ git clone https://github.com/wenyyu/Image-Adaptive-YOLO.git  
@@ -82,6 +84,14 @@ The code is based on [tensorflow-yolov3](https://github.com/YunYang1994/tensorfl
   title={Image-Adaptive YOLO for Object Detection in Adverse Weather Conditions},
   author={Liu, Wenyu and Ren, Gaofeng and Yu, Runsheng and Guo, Shi and Zhu, Jianke and Zhang, Lei},
   booktitle={Proceedings of the AAAI Conference on Artificial Intelligence},
+  year={2022}
+}
+
+@article{liu2022improving,
+  title={Improving Nighttime Driving-Scene Segmentation via Dual Image-adaptive Learnable Filters},
+  author={Liu, Wenyu and Li, Wentong and Zhu, Jianke and Cui, Miaomiao and Xie, Xuansong and Zhang, Lei},
+  journal={arXiv e-prints},
+  pages={arXiv--2207},
   year={2022}
 }
 ```
