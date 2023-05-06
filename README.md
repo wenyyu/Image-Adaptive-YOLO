@@ -4,8 +4,8 @@ Wenyu Liu, Gaofeng Ren, Runsheng Yu, Shi Guo, [Jianke Zhu](https://person.zju.ed
       
 ![image](https://user-images.githubusercontent.com/24246792/146731560-fa69fe86-fbf8-4a96-8bd8-a500490ec41d.png)
 # Update
-The image-adaptive filtering techniques used in the segmentation task can be found in our preprint paper.
-#### "Improving Nighttime Driving-Scene Segmentation via Dual Image-adaptive Learnable Filters". [[arxiv]](https://arxiv.org/abs/2207.01331)
+The image-adaptive filtering techniques used in the segmentation task can be found in our TCSVT 2023 paper.
+#### "Improving Nighttime Driving-Scene Segmentation via Dual Image-adaptive Learnable Filters". [[arxiv]](https://arxiv.org/abs/2207.01331) [[code]]( https://github.com/wenyyu/IA-Seg)
 # Installation
 ```bash
 $ git clone https://github.com/wenyyu/Image-Adaptive-YOLO.git  
