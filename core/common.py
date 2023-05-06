@@ -3,7 +3,8 @@
 
 
 import tensorflow as tf
-import tensorflow.contrib.layers as ly
+# import tensorflow.contrib.layers as ly
+import tf_slim.layers as ly
 from util_filters import *
 
 
@@ -30,13 +31,13 @@ def extract_parameters(net, cfg, trainable):
         cfg.fc1_size,
         scope='fc1',
         activation_fn=lrelu,
-        weights_initializer=tf.contrib.layers.xavier_initializer())
+        weights_initializer=tf.keras.initializers.GlorotUniform())
     filter_features = ly.fully_connected(
         features,
         output_dim,
         scope='fc2',
         activation_fn=None,
-        weights_initializer=tf.contrib.layers.xavier_initializer())
+        weights_initializer=tf.keras.initializers.GlorotUniform())
     return filter_features
 
 def extract_parameters_2(net, cfg, trainable):
@@ -62,18 +63,18 @@ def extract_parameters_2(net, cfg, trainable):
         64,
         scope='fc1',
         activation_fn=lrelu,
-        weights_initializer=tf.contrib.layers.xavier_initializer())
+        weights_initializer=tf.keras.initializers.GlorotUniform())
     filter_features = ly.fully_connected(
         features,
         output_dim,
         scope='fc2',
         activation_fn=None,
-        weights_initializer=tf.contrib.layers.xavier_initializer())
+        weights_initializer=tf.keras.initializers.GlorotUniform())
     return filter_features
 
 def convolutional(input_data, filters_shape, trainable, name, downsample=False, activate=True, bn=True):
 
-    with tf.variable_scope(name):
+    with tf.compat.v1.variable_scope(name):
         if downsample:
             pad_h, pad_w = (filters_shape[0] - 2) // 2 + 1, (filters_shape[1] - 2) // 2 + 1
             paddings = tf.constant([[0, 0], [pad_h, pad_h], [pad_w, pad_w], [0, 0]])
@@ -84,17 +85,17 @@ def convolutional(input_data, filters_shape, trainable, name, downsample=False, 
             strides = (1, 1, 1, 1)
             padding = "SAME"
 
-        weight = tf.get_variable(name='weight', dtype=tf.float32, trainable=True,
+        weight = tf.compat.v1.get_variable(name='weight', dtype=tf.float32, trainable=True,
                                  shape=filters_shape, initializer=tf.random_normal_initializer(stddev=0.01))
-        conv = tf.nn.conv2d(input=input_data, filter=weight, strides=strides, padding=padding)
+        conv = tf.nn.conv2d(input=input_data, filters=weight, strides=strides, padding=padding)
 
         if bn:
-            conv = tf.layers.batch_normalization(conv, beta_initializer=tf.zeros_initializer(),
+            conv = tf.compat.v1.layers.batch_normalization(conv, beta_initializer=tf.zeros_initializer(),
                                                  gamma_initializer=tf.ones_initializer(),
                                                  moving_mean_initializer=tf.zeros_initializer(),
                                                  moving_variance_initializer=tf.ones_initializer(), training=trainable)
         else:
-            bias = tf.get_variable(name='bias', shape=filters_shape[-1], trainable=True,
+            bias = tf.compat.v1.get_variable(name='bias', shape=filters_shape[-1], trainable=True,
                                    dtype=tf.float32, initializer=tf.constant_initializer(0.0))
             conv = tf.nn.bias_add(conv, bias)
 
@@ -107,7 +108,7 @@ def residual_block(input_data, input_channel, filter_num1, filter_num2, trainabl
 
     short_cut = input_data
 
-    with tf.variable_scope(name):
+    with tf.compat.v1.variable_scope(name):
         input_data = convolutional(input_data, filters_shape=(1, 1, input_channel, filter_num1),
                                    trainable=trainable, name='conv1')
         input_data = convolutional(input_data, filters_shape=(3, 3, filter_num1,   filter_num2),
@@ -121,7 +122,7 @@ def residual_block(input_data, input_channel, filter_num1, filter_num2, trainabl
 
 def route(name, previous_output, current_output):
 
-    with tf.variable_scope(name):
+    with tf.compat.v1.variable_scope(name):
         output = tf.concat([current_output, previous_output], axis=-1)
 
     return output
@@ -131,14 +132,14 @@ def upsample(input_data, name, method="deconv"):
     assert method in ["resize", "deconv"]
 
     if method == "resize":
-        with tf.variable_scope(name):
+        with tf.compat.v1.variable_scope(name):
             input_shape = tf.shape(input_data)
-            output = tf.image.resize_nearest_neighbor(input_data, (input_shape[1] * 2, input_shape[2] * 2))
+            output = tf.compat.v1.image.resize_nearest_neighbor(input_data, (input_shape[1] * 2, input_shape[2] * 2))
 
     if method == "deconv":
         # replace resize_nearest_neighbor with conv2d_transpose To support TensorRT optimization
         numm_filter = input_data.shape.as_list()[-1]
-        output = tf.layers.conv2d_transpose(input_data, numm_filter, kernel_size=2, padding='same',
+        output = tf.compat.v1.layers.conv2d_transpose(input_data, numm_filter, kernel_size=2, padding='same',
                                             strides=(2,2), kernel_initializer=tf.random_normal_initializer())
 
     return output

@@ -1,6 +1,6 @@
 #! /usr/bin/env python
 # coding=utf-8
-from easydict import EasyDict as edict
+from .easydict import EasyDict as edict
 from filters_lowlight import *
 import argparse
 parser = argparse.ArgumentParser(description='')
