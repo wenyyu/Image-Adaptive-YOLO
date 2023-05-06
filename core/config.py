@@ -2,7 +2,7 @@
 # coding=utf-8
 
 
-from easydict import EasyDict as edict
+from .easydict import EasyDict as edict
 from filters import *
 import argparse
 parser = argparse.ArgumentParser(description='')

@@ -25,18 +25,18 @@ class YOLOV3(object):
         self.isp_flag = cfg.YOLO.ISP_FLAG
 
 
-        try:
-            self.conv_lbbox, self.conv_mbbox, self.conv_sbbox, self.recovery_loss= self.__build_nework(input_data, self.isp_flag, input_data_clean)
-        except:
-            raise NotImplementedError("Can not build up yolov3 network!")
+        # try:
+        self.conv_lbbox, self.conv_mbbox, self.conv_sbbox, self.recovery_loss= self.__build_nework(input_data, self.isp_flag, input_data_clean)
+        # except:
+        #     raise NotImplementedError("Can not build up yolov3 network!")
 
-        with tf.variable_scope('pred_sbbox'):
+        with tf.compat.v1.variable_scope('pred_sbbox'):
             self.pred_sbbox = self.decode(self.conv_sbbox, self.anchors[0], self.strides[0])
 
-        with tf.variable_scope('pred_mbbox'):
+        with tf.compat.v1.variable_scope('pred_mbbox'):
             self.pred_mbbox = self.decode(self.conv_mbbox, self.anchors[1], self.strides[1])
 
-        with tf.variable_scope('pred_lbbox'):
+        with tf.compat.v1.variable_scope('pred_lbbox'):
             self.pred_lbbox = self.decode(self.conv_lbbox, self.anchors[2], self.strides[2])
 
     def __build_nework(self, input_data, isp_flag, input_data_clean):
@@ -46,8 +46,8 @@ class YOLOV3(object):
         filter_imgs_series = []
 
         if isp_flag:
-            with tf.variable_scope('extract_parameters_2'):
-                input_data = tf.image.resize_images(input_data, [256, 256], method=tf.image.ResizeMethod.BILINEAR)
+            with tf.compat.v1.variable_scope('extract_parameters_2'):
+                input_data = tf.compat.v1.image.resize_images(input_data, [256, 256], method=tf.image.ResizeMethod.BILINEAR)
                 filter_features = common.extract_parameters_2(input_data, cfg, self.trainable)
 
             # filter_features = tf.random_normal([1, 10], 0.5, 0.1)
@@ -56,7 +56,7 @@ class YOLOV3(object):
             filters = [x(input_data, cfg) for x in filters]
             filter_parameters = []
             for j, filter in enumerate(filters):
-                with tf.variable_scope('filter_%d' % j):
+                with tf.compat.v1.variable_scope('filter_%d' % j):
                     print('    creating filter:', j, 'name:', str(filter.__class__), 'abbr.',
                           filter.get_short_name())
                     print('      filter_features:', filter_features.shape)
@@ -90,7 +90,7 @@ class YOLOV3(object):
         input_data = common.convolutional(input_data, (1, 1,  512,  256), self.trainable, 'conv57')
         input_data = common.upsample(input_data, name='upsample0', method=self.upsample_method)
 
-        with tf.variable_scope('route_1'):
+        with tf.compat.v1.variable_scope('route_1'):
             input_data = tf.concat([input_data, route_2], axis=-1)
 
         input_data = common.convolutional(input_data, (1, 1, 768, 256), self.trainable, 'conv58')
@@ -106,7 +106,7 @@ class YOLOV3(object):
         input_data = common.convolutional(input_data, (1, 1, 256, 128), self.trainable, 'conv63')
         input_data = common.upsample(input_data, name='upsample1', method=self.upsample_method)
 
-        with tf.variable_scope('route_2'):
+        with tf.compat.v1.variable_scope('route_2'):
             input_data = tf.concat([input_data, route_1], axis=-1)
 
         input_data = common.convolutional(input_data, (1, 1, 384, 128), self.trainable, 'conv64')

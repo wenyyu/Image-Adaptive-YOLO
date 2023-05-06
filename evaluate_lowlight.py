@@ -15,6 +15,7 @@ import random
 import time
 exp_folder = os.path.join(args.exp_dir, 'exp_{}'.format(args.exp_num))
 
+tf.compat.v1.disable_eager_execution()
 
 if args.use_gpu == 0:
     gpu_id = '-1'
@@ -44,9 +45,9 @@ class YoloTest(object):
         self.isp_flag = cfg.YOLO.ISP_FLAG
 
         with tf.name_scope('input'):
-            self.input_data = tf.placeholder(tf.float32, [None, None, None, 3], name='input_data')
-            self.trainable  = tf.placeholder(dtype=tf.bool,    name='trainable')
-            self.input_data_clean   = tf.placeholder(tf.float32, [None, None, None, 3], name='input_data')
+            self.input_data = tf.compat.v1.placeholder(tf.float32, [None, None, None, 3], name='input_data')
+            self.trainable  = tf.compat.v1.placeholder(dtype=tf.bool,    name='trainable')
+            self.input_data_clean   = tf.compat.v1.placeholder(tf.float32, [None, None, None, 3], name='input_data')
 
 
         model = YOLOV3(self.input_data, self.trainable, self.input_data_clean)
@@ -55,12 +56,12 @@ class YoloTest(object):
 
         with tf.name_scope('ema'):
             ema_obj = tf.train.ExponentialMovingAverage(self.moving_ave_decay)
-        config = tf.ConfigProto()
+        config = tf.compat.v1.ConfigProto()
         config.gpu_options.allow_growth = True
-        self.sess = tf.Session(config=config)
+        self.sess = tf.compat.v1.Session(config=config)
 
         # self.sess  = tf.Session(config=tf.ConfigProto(allow_soft_placement=True))
-        self.saver = tf.train.Saver(ema_obj.variables_to_restore())
+        self.saver = tf.compat.v1.train.Saver(ema_obj.variables_to_restore())
         self.saver.restore(self.sess, self.weight_file)
 
     def predict(self, image, image_name):
